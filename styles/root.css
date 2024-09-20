@@ -1,10 +1,15 @@
+
+
 :root {
     --primary-: #A755A0;
     --secondary-: #FFC69E;
     --tertiary-: #ECB3CE;
+
+    --text-: #453E3E;
 }
 
 * {
+    font-family: 'Rubik', sans-serif;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
