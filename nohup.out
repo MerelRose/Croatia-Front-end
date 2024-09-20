@@ -1,0 +1,9 @@
+CompileCommand: exclude com/intellij/openapi/vfs/impl/FilePartNodeRoot.trieDescend bool exclude = true
+2024-09-20 08:34:54,095 [     95]   WARN - #c.i.i.p.PluginManager - <resource-bundle>com.jetbrains.webstorm.WebstormBundle</resource-bundle> tag is found in an xml descriptor included into the platform part of the IDE but the platform part uses predefined bundles (e.g. ActionsBundle for actions) anyway; this tag must be replaced by a corresponding attribute in some inner tags (e.g. by 'resource-bundle' attribute in 'actions' tag)
+2024-09-20 08:34:55,178 [   1178]   WARN - #c.i.s.ComponentManagerImpl - com.intellij.platform.ide.menu.GlobalMenuLinux <clinit> requests com.intellij.openapi.application.Experiments instance. Class initialization must not depend on services. Consider using instance of the service on-demand instead.
+2024-09-20 08:34:56,900 [   2900]   WARN - #c.i.s.ComponentManagerImpl - com.intellij.psi.search.scope.TestsScope <clinit> requests com.mallowigi.config.select.AtomSelectConfig instance. Class initialization must not depend on services. Consider using instance of the service on-demand instead.
+2024-09-20 08:34:59,035 [   5035]   WARN - #c.i.s.ComponentManagerImpl - com.intellij.ui.jcef.JBCefApp$Holder <clinit> requests com.intellij.ui.jcef.JBCefAppCache instance. Class initialization must not depend on services. Consider using instance of the service on-demand instead.
+
+(java:37870): Gtk-WARNING **: 08:34:59.313: gtk_disable_setlocale() must be called before gtk_init()
+2024-09-20 08:35:54,372 [  60372]   WARN - #c.i.u.x.Binding - No accessors for com.intellij.toolWindow.ToolWindowLayoutStorageManagerState. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
+2024-09-20 08:36:34,927 [ 100927]   WARN - #c.i.o.a.ExperimentalFeatureImpl - Feature 'typescript.compiler.evaluation' is disabled in Release. Set 'percentOfUsers' to 100% to enable in Release.
