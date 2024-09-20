@@ -7,3 +7,4 @@ CompileCommand: exclude com/intellij/openapi/vfs/impl/FilePartNodeRoot.trieDesce
 (java:37870): Gtk-WARNING **: 08:34:59.313: gtk_disable_setlocale() must be called before gtk_init()
 2024-09-20 08:35:54,372 [  60372]   WARN - #c.i.u.x.Binding - No accessors for com.intellij.toolWindow.ToolWindowLayoutStorageManagerState. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
 2024-09-20 08:36:34,927 [ 100927]   WARN - #c.i.o.a.ExperimentalFeatureImpl - Feature 'typescript.compiler.evaluation' is disabled in Release. Set 'percentOfUsers' to 100% to enable in Release.
+2024-09-20 08:44:47,308 [ 593308]   WARN - #c.i.u.x.Binding - No accessors for org.jetbrains.security.package.Package. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
