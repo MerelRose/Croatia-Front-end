@@ -9,6 +9,7 @@
     <title>{{ title }}</title>
 </head>
 <body>
+    <a onclick="router.get('/about')">About</a>
     <div id="app">
 
     </div>
@@ -18,6 +19,7 @@
     import { Router } from "./modules/router.js";
 
     const router = new Router;
+    window.router = router;
 
     router.get('/');
 </script>

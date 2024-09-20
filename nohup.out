@@ -806,3 +806,7 @@ java.lang.ClassNotFoundException: icons.JavaScriptPsiIcons$FileTypes
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:105)
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:92)
 2024-09-20 10:44:20,325 [7766325]   WARN - #git4idea.annotate.GitAnnotationProvider - Git annotations are empty for file /home/bogota/school/croatie/Croatia-Front-end/styles/CFE-home.css in revision fd59641b80705645393f5626f43c460764dda6f9
+2024-09-20 10:56:45,737 [8511737]   WARN - #c.i.u.x.Binding - No accessors for com.intellij.platform.feedback.impl.state.DontShowAgainFeedbackState. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
+2024-09-20 10:56:45,743 [8511743]   WARN - #c.i.u.x.Binding - No accessors for com.intellij.platform.feedback.impl.state.CommonFeedbackSurveysState. This means that state class cannot be serialized properly. Please see https://jb.gg/ij-psoc
+2024-09-20 11:00:55,532 [8761532]   WARN - org.apache.velocity.deprecation - configuration key 'resource.loader' has been deprecated in favor of 'resource.loaders'
+2024-09-20 11:00:55,533 [8761533]   WARN - org.apache.velocity.deprecation - configuration key 'includes.resource.loader.instance' has been deprecated in favor of 'resource.loader.includes.instance'
