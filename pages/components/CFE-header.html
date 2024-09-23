@@ -1,28 +1,32 @@
-<header>
-    <a href="#default" class="logo"><img src="logo.png" alt="Logo"></a>
-    <div class="hamburger" onclick="document.querySelector('.navbar').classList.toggle('show')">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+<link rel="stylesheet" href="./styles/components-css/CFE-header.css">
 
-    <div class="header-right">
-        <a class="active" href="#logIn">Log In</a>
-        <a href="#signIn">Sign In</a>
-    </div>
-</header>
+<div class="headerWrapper" style="display: flex; flex-direction: column;">
+    <header>
+        <a href="#" class="logo"><img src="logo.png" alt="Logo"></a>
+        <div class="hamburger" onclick="document.querySelector('.navbar').classList.toggle('show')">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
 
-<div class="navbar">
-    <div class="nav-links">
-        <a href="#home"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
-        <a href="#about"><i class="fa-solid fa-star" style="color: #ffffff;"></i> Reviews</a>
-        <a href="#contact"><i class="fa-solid fa-tag" style="color: #ffffff;"></i> My Items</a>
-        <a id="logInHide">Log In</a>
-        <a id="signInHide">Sign In</a>
-    </div>
+        <div class="header-right">
+            <a class="active" href="#">Log In</a>
+            <a href="#">Sign In</a>
+        </div>
+    </header>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Search...">
-        <button type="submit"><img src="search.png" id="magnifying-glass" alt="Search"></button>
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="#"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
+            <a href="#"><i class="fa-solid fa-star" style="color: #ffffff;"></i> Reviews</a>
+            <a href="#"><i class="fa-solid fa-tag" style="color: #ffffff;"></i> My Items</a>
+            <a id="logInHide">Log In</a>
+            <a id="signInHide">Sign In</a>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><img src="search.png" id="magnifying-glass" alt="Search"></button>
+        </div>
     </div>
 </div>

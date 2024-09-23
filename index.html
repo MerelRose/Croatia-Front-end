@@ -2,18 +2,25 @@
 <html lang="en">
 <head>
     <script src="./modules/router.js" type="module"></script>
-    <script src="./modules/component.js"></script>
+    <script src="./modules/customComponent.js"></script>
+    <link rel="stylesheet" href="styles/root.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Single Page Application</title>
+    <style>
+        #app {
+            min-height: 100dvh;
+        }
+    </style>
 </head>
 <body>
-    < src="./pages/components/CFE-header.html"></>
+    <custom-component src="./pages/components/CFE-header.html"></custom-component>
     <a href="#" onclick="router.navigate('/about')">About</a>
     <div id="app">
 
     </div>
+    <custom-component src="./pages/components/CFE-footer.html"></custom-component>
 </body>
 <script type="module">
     import { Router } from "./modules/router.js";
