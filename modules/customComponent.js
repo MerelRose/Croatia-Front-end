@@ -5,7 +5,6 @@ customElements.define('custom-component', class CustomComponent extends HTMLElem
 
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' });
     }
 
     async render(src) {
@@ -15,7 +14,7 @@ customElements.define('custom-component', class CustomComponent extends HTMLElem
             const content = await response.text();
             console.log(content);
 
-            this.shadowRoot.innerHTML = content;
+            this.innerHTML = content;
         } catch (error) {
             console.error('Failed to fetch content:', error);
         }

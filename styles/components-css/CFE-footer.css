@@ -104,17 +104,15 @@ footer hr {
 
 .footerMainTop h2 {
     font-weight: 900;
-}
-
-.footerSocialMedia img {
-    height: 40px;
-    width: 40px;
+    margin-top: .4rem;
 }
 
 .footerSocialMedia {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: .4rem;
+    font-size: 1.5rem;
 }
 
 footer a {
