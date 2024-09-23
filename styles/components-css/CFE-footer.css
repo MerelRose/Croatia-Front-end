@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+.rubik-rubikFont {
+    font-family: "Rubik", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.footerMainTop h2 {
+    color: var(--secondary-);
+}
+
+footer {
+    font-family: "Rubik", system-ui;
+}
+
+.footerMainTop h3 {
+    color: white;
+    font-weight: 400;
+}
+
+.footerMainBottom h3 {
+    color: var(--secondary-);
+
+}
+
+.footerDiv {
+    display: block;
+}
+
+footer {
+    background-color: var(--primary-);
+    display: block;
+    width: auto;
+    height: fit-content;
+}
+
+.footerMain {
+    padding: 4%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footerLogo {
+    height: 80px;
+}
+
+.footerPartOne img:hover {
+    background-color: rgba(0, 0, 0, 0.201);
+
+}
+
+.footerMainTop {
+    display: flex;
+    flex-direction: row;
+
+}
+
+footer ul {
+    list-style: none;
+}
+
+.footerPartTwo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60%;
+}
+
+.footerPartOne {
+    padding-right: 20%;
+    width: 60%;
+}
+
+.footerTitle {
+    margin-bottom: 10%;
+}
+
+footer hr {
+    border: var(--secondary-) solid 2px;
+
+}
+
+.footerMainBottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footerBottomContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.footerBottomTwo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 450px;
+}
+
+.footerMainTop h2 {
+    font-weight: 900;
+}
+
+.footerSocialMedia img {
+    height: 40px;
+    width: 40px;
+}
+
+.footerSocialMedia {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+.footerContact a {
+    color: var(--tertiary-);
+}
+
+.footerContent li:hover,
+.footerBottomTwo a:hover {
+    transform: scale(1.04);
+}
+
+@media screen and (max-width: 1100px) {
+
+    .footerPartOne,
+    .footerPartTwo {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .footerMainTop {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footerLogo {
+        height: 60px;
+    }
+
+    .footerMain {
+        padding: 1%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    footer h3 {
+        font-size: medium;
+    }
+
+    footer h2 {
+        font-size: large;
+    }
+
+    .footerPartOne,
+    .footerPartTwo {
+        width: 100%;
+    }
+
+    .footerMainTop {
+        flex-direction: column;
+    }
+
+    .footerMain {
+        padding: 2%;
+    }
+
+    .footerBottomContent {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footerBottomTwo {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .footerBottomTwo h3 {
+        margin: 10px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    footer h3 {
+        font-size: medium;
+    }
+
+    footer h2 {
+        font-size: large;
+    }
+
+    .footerLogo {
+        height: 50px;
+    }
+
+    .footerMain {
+        padding: 10px;
+    }
+
+    .footerBottomContent {
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .footerBottomTwo {
+        flex-direction: row;
+        width: 100%;
+        text-align: center;
+    }
+
+    .footerBottomTwo h3 {
+        margin-bottom: 10px;
+
+    }
+
+    .footerSocialMedia img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .footerSocialMedia {
+        display: flex;
+        flex-direction: row;
+        width: 100px;
+        margin: auto;
+
+    }
+}

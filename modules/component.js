@@ -1,19 +1,21 @@
-class Component extends HTMLElement {
+class JsComponent extends HTMLElement {
     constructor() {
         super(); // Always call super in constructor
     }
 
     connectedCallback() {
-        const src = this.getAttribute('src'); // Get the "src" attribute
+        this.src = this.getAttribute('src'); // Get the "src" attribute
 
-        if (src) {
-            this.loadComponent(src);
+        if (!this.rendered) {
+            this.render();
+            this.rendered = true
         }
     }
 
-    async loadComponent(src) {
+    async render {
         try {
-            const response = await fetch(src); // Fetch the HTML file
+            const response = await fetch(this.src); // Fetch the HTML file
+            console.log(response);
             if (!response.ok) {
                 console.error(`Failed to load component from ${src}`);
             }
@@ -28,4 +30,4 @@ class Component extends HTMLElement {
 }
 
 // Define the custom element
-customElements.define('js-component', Component);
+customElements.define('js-component', JsComponent);
