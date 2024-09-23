@@ -20,13 +20,13 @@
         const content = await response.json();
         console.log(content);
 
-        for (let category of content.categories) {
-            console.log(category);
+        for (key in content) {
             let option = document.createElement('option');
             option.innerText = category;
             option.value = category;
             document.getElementById('selectBox').appendChild(option);
         }
+
     }
 
     loadJson()

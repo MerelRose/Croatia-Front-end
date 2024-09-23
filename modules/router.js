@@ -7,11 +7,15 @@ export class Router {
             },
             '/about': {
                 page: 'CFE-about.html'
+            },
+            '/leon': {
+                page: 'LeonTest.html'
             }
         };
     }
 
     async navigate(route) {
+        console.log(route);
         if (!this.routes[route]) return document.getElementById('app').innerHTML = '<h3>404 not found</h3>';
 
         const res = await fetch('../pages/' + this.routes[route].page);

@@ -1,9 +1,17 @@
 {
-  "categories": [
-    "Electronics",
-    "Furniture",
-    "Clothing",
-    "Books",
-    "Toys"
-  ]
+  "product": {
+    "name": "m",
+    "hh": "m",
+    "category": "cat"
+  },
+  "product2": {
+    "name": "m",
+    "hh": "m",
+    "category": "cati"
+  },
+  "product3": {
+    "name": "m",
+    "hh": "m",
+    "category": "catil"
+  }
 }
