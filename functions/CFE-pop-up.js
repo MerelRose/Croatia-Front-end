@@ -13,3 +13,15 @@ overlay.addEventListener("click", (event) => {
     loginPopUp.classList.remove("show-pop-up");
   }
 });
+
+document.getElementById('open-login-btn').addEventListener('click', function() {
+  document.getElementById('overlay').style.display = 'flex';
+  document.getElementById('register-pop-up').classList.add('show-pop-up');
+});
+
+document.getElementById('overlay').addEventListener('click', function(event) {
+  if (event.target === this) {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('register-pop-up').classList.remove('show-pop-up');
+  }
+});
