@@ -16,6 +16,7 @@
 </head>
 <body>
     <custom-component src="./pages/components/CFE-header.html"></custom-component>
+    <custom-component src="./pages/CFE-products/CFE-add-product.html"></custom-component>
     <a href="#" onclick="router.navigate('/about')">About</a>
     <a href="#" onclick="router.navigate('/leon')">leon</a>
     <div id="app">
@@ -25,10 +26,13 @@
 </body>
 <script type="module">
     import { Router } from "./modules/router.js";
+    import { gunctions } from "./modules/globalFunctions.js";
 
     const router = new Router;
     window.router = router;
     router.navigate('/');
+
+    window.gunctions = new gunctions;
 </script>
 <script src="https://kit.fontawesome.com/dd14f00971.js" crossorigin="anonymous"></script>
 </html>
