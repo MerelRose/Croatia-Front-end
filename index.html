@@ -2,26 +2,37 @@
 <html lang="en">
 <head>
     <script src="./modules/router.js" type="module"></script>
-    <script src="./modules/component.js"></script>
+    <script src="./modules/customComponent.js"></script>
+    <link rel="stylesheet" href="styles/root.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Single Page Application</title>
+    <style>
+        #app {
+            min-height: 100dvh;
+        }
+    </style>
 </head>
 <body>
-    <component src="./pages/components/CFE-header.html"></component>
+    <custom-component src="./pages/components/CFE-header.html"></custom-component>
+    <custom-component src="./pages/CFE-products/CFE-add-product.html"></custom-component>
     <a href="#" onclick="router.navigate('/about')">About</a>
+    <a href="#" onclick="router.navigate('/leon')">leon</a>
     <div id="app">
 
     </div>
+    <custom-component src="./pages/components/CFE-footer.html"></custom-component>
 </body>
-
 <script type="module">
     import { Router } from "./modules/router.js";
+    import { gunctions } from "./modules/globalFunctions.js";
 
     const router = new Router;
     window.router = router;
     router.navigate('/');
+
+    window.gunctions = new gunctions;
 </script>
 <script src="https://kit.fontawesome.com/dd14f00971.js" crossorigin="anonymous"></script>
 </html>
