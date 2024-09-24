@@ -17,8 +17,9 @@
 <body>
     <custom-component src="./pages/components/CFE-header.html"></custom-component>
     <custom-component src="./pages/CFE-products/CFE-add-product.html"></custom-component>
-    <a href="#" onclick="router.navigate('/about')">About</a>
-    <a href="#" onclick="router.navigate('/leon')">leon</a>
+    <a href="#/">Home</a>
+    <a href="#/about">About</a>
+    <a href="#/leon">leon</a>
     <div id="app">
 
     </div>
@@ -30,7 +31,6 @@
 
     const router = new Router;
     window.router = router;
-    router.navigate('/');
 
     window.gunctions = new gunctions;
 </script>
