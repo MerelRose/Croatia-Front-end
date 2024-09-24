@@ -8,6 +8,9 @@ export class Router {
             '/about': {
                 page: 'CFE-about.html'
             },
+            '/products/add': {
+
+            },
             '/leon': {
                 page: 'LeonTest.html'
             }

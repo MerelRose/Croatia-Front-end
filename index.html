@@ -28,9 +28,12 @@
 <script type="module">
     import { Router } from "./modules/router.js";
     import { gunctions } from "./modules/globalFunctions.js";
+    import { apiService } from "./modules/apiService.js"
 
     const router = new Router;
     window.router = router;
+    
+    window.api = new apiService("https://localhost:3000/")
 
     window.gunctions = new gunctions;
 </script>
