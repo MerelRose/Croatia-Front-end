@@ -20,8 +20,8 @@
 
     <div class="navbar">
       <div class="nav-links">
-        <a href="#/"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
-        <a href="#/reviews"><i class="fa-solid fa-star" style="color: #ffffff;"></i> Reviews</a>
+        <NuxtLink to="/"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</NuxtLink>
+        <NuxtLink to="/products/overview"><i class="fa-solid fa-star" style="color: #ffffff;"></i> Products</NuxtLink>
         <NuxtLink to="/about"><i class="fa-solid fa-tag" style="color: #ffffff;"></i> About</NuxtLink>
         <a id="logInHide">Log In</a>
         <a id="signInHide">Sign In</a>
