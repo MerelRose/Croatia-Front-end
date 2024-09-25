@@ -13,4 +13,16 @@ export class gunctions {
             reader.readAsDataURL(file);
         }
     }
+
+    showModal(id) {
+        document.getElementById(id).classList.add('active');
+    }
+
+    hideModal(id) {
+        document.getElementById(id).classList.remove('active');
+    }
+
+    toggleModal(id) {
+        document.getElementById(id).classList.toggle('active');
+    }
 }

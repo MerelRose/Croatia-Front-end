@@ -5,7 +5,7 @@ customElements.define('custom-component', class CustomComponent extends HTMLElem
 
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' })
+        this.attachShadow({ mode: 'open' });
     }
 
     async render(src) {
