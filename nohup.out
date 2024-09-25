@@ -1,4 +1,5 @@
 CompileCommand: exclude com/intellij/openapi/vfs/impl/FilePartNodeRoot.trieDescend bool exclude = true
+<<<<<<< HEAD
 2024-09-20 08:34:54,095 [     95]   WARN - #c.i.i.p.PluginManager - <resource-bundle>com.jetbrains.webstorm.WebstormBundle</resource-bundle> tag is found in an xml descriptor included into the platform part of the IDE but the platform part uses predefined bundles (e.g. ActionsBundle for actions) anyway; this tag must be replaced by a corresponding attribute in some inner tags (e.g. by 'resource-bundle' attribute in 'actions' tag)
 2024-09-20 08:34:55,178 [   1178]   WARN - #c.i.s.ComponentManagerImpl - com.intellij.platform.ide.menu.GlobalMenuLinux <clinit> requests com.intellij.openapi.application.Experiments instance. Class initialization must not depend on services. Consider using instance of the service on-demand instead.
 2024-09-20 08:34:56,900 [   2900]   WARN - #c.i.s.ComponentManagerImpl - com.intellij.psi.search.scope.TestsScope <clinit> requests com.mallowigi.config.select.AtomSelectConfig instance. Class initialization must not depend on services. Consider using instance of the service on-demand instead.
@@ -1089,3 +1090,6 @@ java.lang.ClassNotFoundException: icons.JavaScriptPsiIcons$FileTypes
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:105)
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:92)
 2024-09-21 08:54:53,523 [87599523]   WARN - #c.i.i.IdeEventQueue - System clock's jumped back by ~1 sec
+=======
+WARN: <resource-bundle>com.jetbrains.webstorm.WebstormBundle</resource-bundle> tag is found in an xml descriptor included into the platform part of the IDE but the platform part uses predefined bundles (e.g. ActionsBundle for actions) anyway; this tag must be replaced by a corresponding attribute in some inner tags (e.g. by 'resource-bundle' attribute in 'actions' tag)
+>>>>>>> 5a2519a4f0f5306bb2c3b5c6aca40b72a9a1bfba
