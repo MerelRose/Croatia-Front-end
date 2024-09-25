@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="../../styles/components-css/CFE-product-card.css" />
 <link rel="stylesheet" href="../../styles/root.css" />
+<script src="./modules/apiService.js"></script>
 
 <div class="product-container">
     <div class="picture-container">
@@ -17,9 +18,17 @@
 <div id="test"></div>
 
 
-<script>
-    window.api.get('/products').then((response) => {
-        for (product in response) {
+<script type="module">
+    fetch('https://localhost:3000/products').then(async (response) => {
+        await response.json();
+        for (let product in response) {
+            console.log(product);
+        }
+    })
+
+    // const api = new apiService('https://localhost:3000/')
+    // api.get('/products').then((response) => {
+    //     for (product in response) {
             console.log(product);
 
             let htm = "<div class='product-container'>";
@@ -35,10 +44,10 @@
                     });
                 htm += "</div>";
         }
-
-        document.getElementById("test").innerHTML = htm;
-    })
-    .catch(function (error) {
-        console.error(error);
-    });
+    //
+    //     document.getElementById("test").innerHTML = htm;
+    // })
+    // .catch(function (error) {
+    //     console.error(error);
+    // });
 </script>
