@@ -13,6 +13,14 @@ export class Router {
             },
             '/leon': {
                 page: 'LeonTest.html'
+            },
+
+            '/product': {
+                page: 'CFE-product-overview.html'
+            },
+
+            '/product-card': {
+                page: 'components/CFE-product-card.html'
             }
         };
 
