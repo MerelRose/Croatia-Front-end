@@ -31,11 +31,165 @@
     </div>
   </div>
 
-
-
-  <script type="text/javascript" src="../../functions/CFE-pop-up.js"></script>
 </template>
 
 <style scoped>
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
+.pop-up-wrapper {
+  display: flex;
+  position: relative;
+  z-index: 20;
+  transform: translateY(-100px);
+  transition: all 0.3s ease;
+  width: fit-content;
+  max-width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  max-width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.pop-up-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  max-width: 100%;
+}
+
+.pop-up-container-picture {
+  height: 500px;
+  width: 200px;
+  background-color: var(--tertiary-);
+  border-radius: 30px 0px 0px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.pop-up-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 650px;
+  max-width: 100%;
+  background-color: rgb(248, 235, 235);
+  border-radius: 0px 30px 30px 0px;
+  padding: 15px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-);
+}
+
+input {
+  border-radius: 15px;
+  width: 100%;
+  max-width: 700px;
+  height: 40px;
+  border: none;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  color: var(--text-);
+  padding: 5px;
+}
+
+label {
+  color: var(--text-);
+}
+
+.submit-button {
+  width: 100%;
+  max-width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  background-color: var(--primary-);
+  color: white;
+  font-weight: bold;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #8A4B8B;
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+  .pop-up-wrapper {
+    flex-direction: column;
+  }
+
+  .pop-up-container-picture {
+    width: 100%;
+    height: 250px;
+    border-radius: 30px 30px 0px 0px;
+  }
+
+  .pop-up-container {
+    width: 100%;
+    border-radius: 0px 0px 30px 30px;
+  }
+
+  input {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .pop-up-container {
+    height: auto;
+    padding: 10px;
+  }
+
+  .pop-up-container-picture {
+    height: 200px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  .submit-button {
+    max-width: 150px;
+  }
+}
 </style>

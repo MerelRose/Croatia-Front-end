@@ -1,5 +1,6 @@
 <script setup lang="ts">
-
+const modalReg = ref(false);
+const modalLog = ref(false);
 </script>
 
 <template>
@@ -13,8 +14,8 @@
       </div>
 
       <div class="header-right">
-        <a class="active" href="#">Log In</a>
-        <a href="#">Sign In</a>
+        <a @click="modalLog = !modalLog" class="active" href="#">Log In</a>
+        <a @click="modalReg = !modalReg">Register</a>
       </div>
     </header>
 
@@ -33,6 +34,9 @@
       </div>
     </div>
   </div>
+
+  <AppModalRegister v-if="modalReg" />
+  <AppModalLogin v-if="modalLog" />
 </template>
 
 <style scoped>
