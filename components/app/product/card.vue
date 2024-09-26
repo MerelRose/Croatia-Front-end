@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="product-container">
+  <div id="product-container">
     <div class="picture-container">
       <span class="heart-icon">❤</span>
     </div>
@@ -18,7 +18,7 @@
 </template>
 
 <style scoped>
-.product-container {
+#product-container {
   background-color: rgb(248, 235, 235);
   height: 400px;
   width: 300px;
