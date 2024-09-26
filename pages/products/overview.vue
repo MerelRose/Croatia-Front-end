@@ -18,9 +18,16 @@ const { data } = await useFetch('http://localhost:3000/products');
 </script>
 
 <style scoped>
+#test {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
 .product-container {
   background-color: rgb(248, 235, 235);
-  height: 400px;
+  height: 22rem;
   width: 300px;
   border-radius: 25px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -28,14 +35,24 @@ const { data } = await useFetch('http://localhost:3000/products');
   position: relative;
   transition: width 0.3s ease, height 0.3s ease;
   overflow: hidden;
+  margin: 15px;
+  flex: 0 0 300px;
 }
 
 .picture-container {
   width: 100%;
   height: 200px;
-  background-color: var(--secondary-);
+  background-color: white;
   border-radius: 25px;
   position: relative;
+  padding: 10px;
+}
+
+.picture-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 25px;
 }
 
 
@@ -44,7 +61,7 @@ const { data } = await useFetch('http://localhost:3000/products');
   top: 10px;
   right: 10px;
   font-size: 40px;
-  color: white;
+  color: var(--secondary-);
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -66,6 +83,10 @@ p {
 h4 {
   color: var(--text-);
   margin-left: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 .product-button {
