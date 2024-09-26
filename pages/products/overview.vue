@@ -1,9 +1,9 @@
 <template>
   <div id="test">
-    <div v-for="product in data" :key="product.id" class="product-container">
+    <div v-for="product in products" :key="product.id" class="product-container">
       <div class="picture-container">
         <img :src="product.image" alt="product image">
-        <span class="heart-icon">&#10084;</span>
+        <!-- <span class="heart-icon">&#10084;</span> -->
       </div>
       <h4 class="product-name">{{ product.title }}</h4>
       <h4>&#9733; &#9733; &#9733; &#9733; &#9733;</h4>
@@ -28,7 +28,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-const { data } = await useFetch('http://localhost:3000/products');
+const { data: products } = await useFetch('http://localhost:3000/products');
+const { data: reviews } = await useFetch('http://localhost:3000/reviews');
 
 const selectedProduct = ref(null);
 const showMore = ref(false);
@@ -162,9 +163,9 @@ h4 {
   width: 450px;
   height: 700px;
   border-radius: 25px 0px 0px 0px;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   padding: 20px;
 }
 
@@ -218,6 +219,7 @@ h1 {
   background-color: var(--primary-);
   color: white;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 5px;
 }
 
 .btn:hover {
