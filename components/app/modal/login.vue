@@ -1,6 +1,37 @@
-<script setup lang="ts">
-
+<script>
+export default {
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault()
+      console.log('Form submitted')
+      this.handleLogin()
+    },
+    handleLogin() {
+      console.log('Login button clicked')
+      console.log('Email:', this.email)
+      console.log('Password:', this.password)
+     $fetch('http://localhost:3000/login', {
+      method: "POST",
+      body: {
+        email: this.email,
+        password: this.password
+      }
+      })
+      .catch(error => {
+        console.error('Error occurred:', error)
+        // Handle error
+      })
+    }
+  }
+}
 </script>
+
 
 <template>
   <div id="overlay" class="overlay">
@@ -10,15 +41,15 @@
       </div>
       <div class="pop-up-container">
         <h1 class="title">Login</h1>
-        <form class="form">
+        <form class="form" @submit="handleSubmit">
           <label for="mail">E-mail:</label><br />
-          <input type="text" id="mail" name="mail" class="input" /><br />
+          <input type="text" id="mail" name="mail" class="input" v-model="email" />
           <label for="pass">Password:</label><br />
-          <input type="text" id="pass" name="pass" class="input" /><br />
+          <input type="password" id="pass" name="pass" class="input" v-model="password" />
           <div class="button-container">
             <button class="submit-button"><b>Register</b></button>
-            <button class="submit-button"><b>Login</b></button>
-          </div>
+            <button class="submit-button" @click="handleLogin"><b>Login</b></button>
+            </div>
         </form>
       </div>
     </div>

@@ -15,7 +15,7 @@ const modalLog = ref(false);
 
       <div class="header-right">
         <a @click="modalLog = !modalLog" class="active" href="#">Log In</a>
-        <a @click="modalReg = !modalReg">Register</a>
+        <a href="#" @click="modalReg = !modalReg">Register</a>
       </div>
     </header>
 
