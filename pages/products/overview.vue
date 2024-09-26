@@ -1,22 +1,21 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-
-  <div class="product-container">
-    <div class="picture-container">
-      <span class="heart-icon">&#10084;</span>
+  <div id="test">
+    <div v-for="product in data" :key="product.id" class="product-container">
+      <div class="picture-container">
+        <img :src="product.image" alt="product image">
+        <span class="heart-icon">&#10084;</span>
+      </div>
+      <h4 class="product-name">{{ product.title }}</h4>
+      <h4>&#9733; &#9733; &#9733; &#9733; &#9733;</h4>
+      <p>&euro;{{ product.price }}</p>
+      <button class="product-button">></button>
     </div>
-
-    <h1 class="product-name">Lorem Ipsum</h1>
-    <h4>&#9733; &#9733; &#9733; &#9733; &#9733;</h4> <br>
-    <p>&euro; 99,99</p>
-    <!-- <p>www.productsite.com</p> -->
-
-    <button class="product-button">></button>
   </div>
 </template>
+
+<script setup lang="ts">
+const { data } = await useFetch('http://localhost:3001/products');
+</script>
 
 <style scoped>
 .product-container {
