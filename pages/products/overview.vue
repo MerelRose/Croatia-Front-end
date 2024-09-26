@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-const { data } = await useFetch('http://localhost:3001/products');
+const { data } = await useFetch('http://localhost:3000/products');
 </script>
 
 <style scoped>
