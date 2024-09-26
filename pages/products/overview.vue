@@ -8,13 +8,31 @@
       <h4 class="product-name">{{ product.title }}</h4>
       <h4>&#9733; &#9733; &#9733; &#9733; &#9733;</h4>
       <p>&euro;{{ product.price }}</p>
-      <button class="product-button">></button>
+      <button class="product-button" @click="showProductDetails(product)">></button>
+    </div>
+    <div v-if="selectedProduct" class="product-details">
+      <h2>{{ selectedProduct.title }}</h2>
+      <img :src="selectedProduct.image" alt="product image">
+      <p>{{ selectedProduct.description }}</p>
+      <p>&euro;{{ selectedProduct.price }}</p>
+      <button class="close-button" @click="hideProductDetails">Close</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 const { data } = await useFetch('http://localhost:3000/products');
+
+const selectedProduct = ref(null);
+
+function showProductDetails(product) {
+  selectedProduct.value = product;
+}
+
+function hideProductDetails() {
+  selectedProduct.value = null;
+}
 </script>
 
 <style scoped>
@@ -37,6 +55,10 @@ const { data } = await useFetch('http://localhost:3000/products');
   overflow: hidden;
   margin: 15px;
   flex: 0 0 300px;
+  transition: transform 0.2s ease;
+}
+.product-container:hover {
+  transform: scale(1.03);
 }
 
 .picture-container {
@@ -105,6 +127,27 @@ h4 {
 .product-button:hover {
   background-color: var(--secondary-);
   transform: scale(1.05);
+}
+
+.product-details {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 /* Responsive Adjustments */
