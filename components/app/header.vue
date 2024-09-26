@@ -1,5 +1,6 @@
 <script setup lang="ts">
-
+const modalReg = ref(false);
+const modalLog = ref(false);
 </script>
 
 <template>
@@ -13,15 +14,15 @@
       </div>
 
       <div class="header-right">
-        <a class="active" href="#">Log In</a>
-        <a href="#">Sign In</a>
+        <a @click="modalLog = !modalLog" class="active" href="#">Log In</a>
+        <a @click="modalReg = !modalReg">Register</a>
       </div>
     </header>
 
     <div class="navbar">
       <div class="nav-links">
-        <a href="#/"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
-        <a href="#/reviews"><i class="fa-solid fa-star" style="color: #ffffff;"></i> Reviews</a>
+        <NuxtLink to="/"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</NuxtLink>
+        <NuxtLink to="/products/overview"><i class="fa-solid fa-star" style="color: #ffffff;"></i> Products</NuxtLink>
         <NuxtLink to="/about"><i class="fa-solid fa-tag" style="color: #ffffff;"></i> About</NuxtLink>
         <a id="logInHide">Log In</a>
         <a id="signInHide">Sign In</a>
@@ -33,6 +34,9 @@
       </div>
     </div>
   </div>
+
+  <AppModalRegister v-if="modalReg" />
+  <AppModalLogin v-if="modalLog" />
 </template>
 
 <style scoped>

@@ -3,23 +3,22 @@
 </script>
 
 <template>
-
-  <div class="product-container">
+  <div id="product-container">
     <div class="picture-container">
-      <span class="heart-icon">&#10084;</span>
+      <span class="heart-icon">❤</span>
     </div>
 
     <h1 class="product-name">Lorem Ipsum</h1>
-    <h4>&#9733; &#9733; &#9733; &#9733; &#9733;</h4> <br>
-    <p>&euro; 99,99</p>
+    <h4>★ ★ ★ ★ ★</h4> <br>
+    <p>€ 99,99</p>
     <!-- <p>www.productsite.com</p> -->
 
-    <button class="product-button">></button>
+    <button class="product-button">&gt;</button>
   </div>
 </template>
 
 <style scoped>
-.product-container {
+#product-container {
   background-color: rgb(248, 235, 235);
   height: 400px;
   width: 300px;
