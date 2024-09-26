@@ -10,12 +10,18 @@
       <p>&euro;{{ product.price }}</p>
       <button class="product-button" @click="showProductDetails(product)">></button>
     </div>
-    <div v-if="selectedProduct" class="product-details">
+    <div v-if="selectedProduct" class="overview-container">
+      <button class="btn" @click="hideProductDetails">Close</button>
+      <img :src="selectedProduct.image" alt="product image" class="overview-image">
       <h2>{{ selectedProduct.title }}</h2>
-      <img :src="selectedProduct.image" alt="product image">
-      <p>{{ selectedProduct.description }}</p>
       <p>&euro;{{ selectedProduct.price }}</p>
-      <button class="close-button" @click="hideProductDetails">Close</button>
+      <p class="description-container" :class="{ expanded: showMore }">{{ selectedProduct.description }}</p>
+      <button class="btn" @click="showMore = !showMore">{{ showMore ? 'Less' : 'More' }}</button>
+      <!-- <span class="heart-icon">&#10084;</span> -->
+      <div class="review-container">
+        <h1>Reviews</h1>
+        <p>5/5 stars</p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +31,7 @@ import { ref } from 'vue';
 const { data } = await useFetch('http://localhost:3000/products');
 
 const selectedProduct = ref(null);
+const showMore = ref(false);
 
 function showProductDetails(product) {
   selectedProduct.value = product;
@@ -148,6 +155,96 @@ h4 {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.overview-container {
+  background-color: rgb(248, 235, 235);
+  width: 450px;
+  height: 700px;
+  border-radius: 25px 0px 0px 0px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  padding: 20px;
+}
+
+.overview-image {
+  width: 100%;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 25px 0px 0px 25px;
+  margin: 0px 0px 10px 0px;
+  object-fit: contain;
+}
+
+h2 {
+  margin: 0px 0px 0px 10px;
+  color: var(--text-);
+}
+
+p {
+  margin: 0px 0px 0px 20px; 
+  color: var(--text-);
+}
+
+h1 {
+  color: var(--text-);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.description-container {
+  max-height: 70px;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.description-container.expanded {
+  max-height: 500px;
+}
+
+.btn {
+  border: none;
+  width: 100px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--primary-);
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--tertiary-);
+  transform: scale(1.05);
+}
+
+.heart-icon {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.heart-icon:hover {
+  transform: scale(1.2);
+}
+
+.review-container {
+  width: 410px;
+  height: 90px;
+  background-color: var(--secondary-);
+  border-radius: 15px;
+  padding: 10px;
 }
 
 /* Responsive Adjustments */
