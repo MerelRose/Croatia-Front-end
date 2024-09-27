@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+  // const user = useState('user', () => null));
 </script>
 
 <template>
