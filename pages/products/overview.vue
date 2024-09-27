@@ -13,14 +13,13 @@
     <div v-if="selectedProduct" class="overview-container">
       <button class="btn" @click="hideProductDetails">Close</button>
       <img :src="selectedProduct.image" alt="product image" class="overview-image">
-      <h2>{{ selectedProduct.title }}</h2>
+      <h3>{{ selectedProduct.title }}</h3>
       <p>&euro;{{ selectedProduct.price }}</p>
       <p class="description-container" :class="{ expanded: showMore }">{{ selectedProduct.description }}</p>
       <button class="btn" @click="showMore = !showMore">{{ showMore ? 'Less' : 'More' }}</button>
+      <!-- <button class="btn">Add Product</button> -->
       <!-- <span class="heart-icon">&#10084;</span> -->
-      
-
-
+        
         <!-- <form @submit.prevent="addReview">
             <div>
                     <input type="radio" id="rating-1" v-model="reviewRating" value="1">
@@ -38,7 +37,8 @@
             <input type="text" v-model="reviewText" placeholder="Write your review...">
           <button type="submit" class="btn">Add Review</button>
         </form> -->
-        <h1>Reviews</h1>
+
+        <h2>Reviews</h2>
         <div class="review-container">
         <div v-for="review in productReviews" :key="review.id" class="single-review">
           <!-- <h4>Rating: {{ review.rating }}/5</h4> -->
@@ -143,6 +143,53 @@ function calculateAverageRating(reviews, productId) {
 </script>
 
 <style scoped>
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content button[type="button"] {
+  margin-top: 10px;
+}
+
+.popup-content form {
+  margin-top: 20px;
+}
+
+.popup-content input[type="radio"] {
+  margin-right: 10px;
+}
+
+.popup-content label {
+  margin-right: 20px;
+}
+
+
+
+
+
 #test {
   display: flex;
   flex-wrap: wrap;
@@ -356,7 +403,7 @@ h1 {
 
 .review-container {
   width: 410px;
-  height: 170px;
+  height: 160px;
   background-color: var(--primary-);
   border-radius: 15px;
   padding: 10px;
