@@ -1,5 +1,29 @@
 <script setup lang="ts">
-  // const user = useState('user', () => null));
+
+const user = useState('user', () => null);
+const userForm = ref({
+  email: '',
+  password: ''
+});
+
+let id = null;
+
+async function handleForm() {
+  try {
+    await useFetch('http://localhost:3000/login', {
+      method: "POST",
+      body: userForm.value
+    }).then(response => {
+      id = response.data._rawValue.userId;
+    });
+
+    await useFetch('http://localhost:3000/users/' + id).then(response => {
+      console.log(response.data._rawValue);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
 </script>
 
 <template>
@@ -10,14 +34,14 @@
       </div>
       <div class="pop-up-container">
         <h1 class="title">Login</h1>
-        <form class="form">
+        <form @submit.prevent="handleForm" class="form">
           <label for="mail">E-mail:</label><br />
-          <input type="text" id="mail" name="mail" class="input" /><br />
+          <input required v-model="userForm.email" type="text" id="mail" name="mail" class="input" /><br />
           <label for="pass">Password:</label><br />
-          <input type="text" id="pass" name="pass" class="input" /><br />
+          <input required v-model="userForm.password" type="text" id="pass" name="pass" class="input" /><br />
           <div class="button-container">
-            <button class="submit-button"><b>Register</b></button>
-            <button class="submit-button"><b>Login</b></button>
+            <button @click.prevent="$emit('toggleSelf'); $emit('toggleCounterPart')" class="submit-button" type="submit">Register</button>
+            <input type="submit" class="submit-button" value="Login">
           </div>
         </form>
       </div>

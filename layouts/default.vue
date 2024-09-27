@@ -8,8 +8,8 @@
     <main>
       <slot />
     </main>
+    <AppFooter />
   </div>
-  <AppFooter />
 </template>
 
 <style scoped>

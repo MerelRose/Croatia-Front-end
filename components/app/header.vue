@@ -14,8 +14,8 @@ const modalLog = ref(false);
       </div>
 
       <div class="header-right">
-        <a @click="modalLog = !modalLog" class="active" href="#">Log In</a>
-        <a @click="modalReg = !modalReg">Register</a>
+        <a @click.prevent="modalLog = !modalLog" class="active" href="#">Log In</a>
+        <a @click.prevent="modalReg = !modalReg" href="#">Register</a>
       </div>
     </header>
 
@@ -35,8 +35,8 @@ const modalLog = ref(false);
     </div>
   </div>
 
-  <AppModalRegister v-if="modalReg" />
-  <AppModalLogin v-if="modalLog" />
+  <AppModalRegister v-if="modalReg" @toggleSelf="modalReg = !modalReg" @toggleCounterPart="modalLog = !modalLog" />
+  <AppModalLogin v-if="modalLog" @toggleSelf="modalLog = !modalLog" @toggleCounterPart="modalReg = !modalReg" />
 </template>
 
 <style scoped>
