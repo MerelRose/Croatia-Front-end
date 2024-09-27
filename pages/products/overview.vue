@@ -18,10 +18,20 @@
       <p class="description-container" :class="{ expanded: showMore }">{{ selectedProduct.description }}</p>
       <button class="btn" @click="showMore = !showMore">{{ showMore ? 'Less' : 'More' }}</button>
       <!-- <span class="heart-icon">&#10084;</span> -->
-      <div class="review-container">
-        <h1>Reviews</h1>
-        <p>5/5 stars</p>
-      </div>
+
+
+      
+      <div v-if="reviews && selectedProduct" class="review-container" v-for="review in reviews" :key="review.id">
+  <h4>{{ review.text }}</h4>
+  <div class="rating">
+    <span v-for="i in 5" :class="{ 'yellow': i <= review.rating }">&#9733;</span>
+    <p>Review Product ID: {{ review.product_id }}</p>
+    <p>Selected Product ID: {{ selectedProduct.id }}</p>
+  </div>
+</div>
+
+
+
     </div>
   </div>
 </template>
@@ -29,7 +39,23 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 const { data: products } = await useFetch('http://localhost:3000/products');
-const { data: reviews } = await useFetch('http://localhost:3000/reviews');
+
+const loading = ref(true);
+const reviews = ref(null);
+
+try {
+  const { data: reviewsData } = await useFetch('http://localhost:3000/reviews');
+  reviews.value = reviewsData;
+  loading.value = false;
+} catch (error) {
+  console.error(error);
+  "its fucky wuky"
+}
+
+const filteredReviews = computed(() => {
+  if (!reviews.value || !selectedProduct.value) return [];
+  return reviews.value.filter(review => review.product_id === selectedProduct.value.id);
+});
 
 const selectedProduct = ref(null);
 const showMore = ref(false);
@@ -50,6 +76,13 @@ function hideProductDetails() {
   justify-content: center;
 }
 
+.rating {
+  font-size: 20px;
+}
+
+.yellow {
+  color: yellow;
+}
 
 .product-container {
   background-color: rgb(248, 235, 235);
@@ -202,7 +235,7 @@ h1 {
 }
 
 .description-container {
-  max-height: 70px;
+  max-height: 35px;
   overflow: hidden;
   transition: max-height 0.5s ease;
 }
@@ -247,6 +280,11 @@ h1 {
   background-color: var(--secondary-);
   border-radius: 15px;
   padding: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 
 /* Responsive Adjustments */
