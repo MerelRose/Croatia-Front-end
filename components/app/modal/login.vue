@@ -38,7 +38,7 @@ async function handleForm() {
           <label for="mail">E-mail:</label><br />
           <input required v-model="userForm.email" type="text" id="mail" name="mail" class="input" /><br />
           <label for="pass">Password:</label><br />
-          <input required v-model="userForm.password" type="text" id="pass" name="pass" class="input" /><br />
+          <input required v-model="userForm.password" type="password" id="pass" name="pass" class="input" /><br />
           <div class="button-container">
             <button @click.prevent="$emit('toggleSelf'); $emit('toggleCounterPart')" class="submit-button" type="submit">Register</button>
             <input type="submit" class="submit-button" value="Login">

@@ -1,6 +1,24 @@
 <script setup lang="ts">
-function handleForm() {
+const registerForm = ref({
+  email: '',
+  password: '',
+  first_name: '',
+  last_name: ''
+})
 
+async function handleForm() {
+  try {
+    await useFetch('http://localhost:3000/register', {
+      method: "POST",
+      body: registerForm.value
+    }).then(response => {
+      if (response.data._rawValue.message === 'ok') {
+        const user = useState('user', () => registerForm.value);
+      }
+    })
+  } catch (e) {
+    console.log(e);
+  }
 }
 </script>
 
@@ -14,19 +32,19 @@ function handleForm() {
         <h1 class="title">Register</h1>
         <form @submit.prevent="handleForm" class="form">
           <label for="email">E-mail:</label><br />
-          <input type="email" id="email" name="email" class="input" autocomplete="email" required /><br />
+          <input v-model="registerForm.email" type="email" id="email" name="email" class="input" autocomplete="email" required /><br />
 
           <label for="first-name">First Name:</label><br />
-          <input type="text" id="first-name" name="first-name" class="input" autocomplete="given-name" required /><br />
+          <input v-model="registerForm.first_name" type="text" id="first-name" name="first-name" class="input" autocomplete="given-name" required /><br />
 
           <label for="last-name">Last Name:</label><br />
-          <input type="text" id="last-name" name="last-name" class="input" autocomplete="family-name" required /><br />
+          <input v-model="registerForm.last_name" type="text" id="last-name" name="last-name" class="input" autocomplete="family-name" required /><br />
 
-          <label for="birth-year">Age / Birth Year:</label><br />
-          <input type="date" id="birth-year" name="birth-year" class="input" autocomplete="bday-year" required /><br />
+          <label for="password">Password:</label><br />
+          <input v-model="registerForm.password" type="password" id="password" name="password" class="input" required /><br />
 
           <div class="button-container">
-            <button type="button" class="submit-button"><b>Login</b></button>
+            <button @click="$emit('toggleSelf'); $emit('toggleCounterPart')" type="button" class="submit-button"><b>Login</b></button>
             <button type="submit" class="submit-button"><b>Register</b></button>
           </div>
         </form>
