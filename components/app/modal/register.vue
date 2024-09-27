@@ -1,5 +1,7 @@
 <script setup lang="ts">
+function handleForm() {
 
+}
 </script>
 
 <template>
@@ -10,7 +12,7 @@
       </div>
       <div class="pop-up-container">
         <h1 class="title">Register</h1>
-        <form class="form">
+        <form @submit.prevent="handleForm" class="form">
           <label for="email">E-mail:</label><br />
           <input type="email" id="email" name="email" class="input" autocomplete="email" required /><br />
 
@@ -24,6 +26,7 @@
           <input type="date" id="birth-year" name="birth-year" class="input" autocomplete="bday-year" required /><br />
 
           <div class="button-container">
+            <button type="button" class="submit-button"><b>Login</b></button>
             <button type="submit" class="submit-button"><b>Register</b></button>
           </div>
         </form>
