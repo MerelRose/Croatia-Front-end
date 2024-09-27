@@ -1,9 +1,9 @@
 <template>
   <div id="test">
-    <div v-for="product in data" :key="product.id" class="product-container">
+    <div v-for="product in products" :key="product.id" class="product-container">
       <div class="picture-container">
         <img :src="product.image" alt="product image">
-        <span class="heart-icon">&#10084;</span>
+        <!-- <span class="heart-icon">&#10084;</span> -->
       </div>
       <h4 class="product-name">{{ product.title }}</h4>
       <h4>&#9733; &#9733; &#9733; &#9733; &#9733;</h4>
@@ -18,9 +18,34 @@
       <p class="description-container" :class="{ expanded: showMore }">{{ selectedProduct.description }}</p>
       <button class="btn" @click="showMore = !showMore">{{ showMore ? 'Less' : 'More' }}</button>
       <!-- <span class="heart-icon">&#10084;</span> -->
-      <div class="review-container">
+      
+
+
+        <!-- <form @submit.prevent="addReview">
+            <div>
+                    <input type="radio" id="rating-1" v-model="reviewRating" value="1">
+                    <label for="rating-1"> 1 </label>
+                    <input type="radio" id="rating-2" v-model="reviewRating" value="2">
+                    <label for="rating-2"> 2 </label>
+                    <input type="radio" id="rating-3" v-model="reviewRating" value="3">
+                    <label for="rating-3"> 3 </label>
+                    <input type="radio" id="rating-4" v-model="reviewRating" value="4">
+                    <label for="rating-4"> 4 </label>
+                    <input type="radio" id="rating-5" v-model="reviewRating" value="5">
+                    <label for="rating-5"> 5 </label>
+            </div>
+            <input type="text" v-model="reviewUsername" placeholder="Your name (optional)">
+            <input type="text" v-model="reviewText" placeholder="Write your review...">
+          <button type="submit" class="btn">Add Review</button>
+        </form> -->
         <h1>Reviews</h1>
-        <p>5/5 stars</p>
+        <div class="review-container">
+        <div v-for="review in productReviews" :key="review.id" class="single-review">
+          <!-- <h4>Rating: {{ review.rating }}/5</h4> -->
+          <div class="rating"> <span v-for="i in 5" :class="{ 'yellow': i <= review.rating }">&#9733;</span></div>
+          <!-- <p>Username: {{ review.user_id }}</p> -->
+          <p>{{ review.text }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -28,17 +53,92 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-const { data } = await useFetch('http://localhost:3000/products');
+import { useFetch } from '#app';
+
+// const user = useState('user');
+
+const { data: products } = await useFetch('http://localhost:3000/products');
+
+const loading = ref(true);
+const reviews = ref(null);
+
+try {
+  const { data: reviewsData } = await useFetch('http://localhost:3000/reviews');
+  reviews.value = reviewsData;
+  loading.value = false;
+} catch (error) {
+  console.error(error);
+  "its fucky wuky"
+}
+
+const filteredReviews = computed(() => {
+  if (!reviews.value || !selectedProduct.value) return [];
+  return reviews.value.filter(review => review.product_id === selectedProduct.value.id);
+});
 
 const selectedProduct = ref(null);
 const showMore = ref(false);
+const productReviews = ref([]);
 
 function showProductDetails(product) {
   selectedProduct.value = product;
+  fetchReviews(product.id);
+}
+
+async function fetchReviews(productId) {
+  const response = await fetch(`http://localhost:3000/reviews/${productId}`);
+  const data = await response.json();
+  productReviews.value = data;
 }
 
 function hideProductDetails() {
   selectedProduct.value = null;
+  productReviews.value = [];
+}
+
+
+
+const reviewText = ref('');
+const reviewRating = ref('');
+const reviewUsername = ref('');
+
+async function addReview() {
+  const review = {
+    user_id: null,
+    text: reviewText.value,
+    rating: reviewRating.value,
+    product_id: selectedProduct.value.id,
+  };
+
+
+
+  const response = await $fetch('http://localhost:3000/reviews', {
+    method: 'POST',
+    body: JSON.stringify(review),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (response.ok) {
+    console.log('Review added successfully!');
+    reviewText.value = '';
+    reviewRating.value = '';
+    reviewUsername.value = '';
+    fetchReviews(selectedProduct.value.id);
+  } else {
+    console.error('Error adding review:', response.statusText);
+  }
+}
+
+function calculateAverageRating(reviews, productId) {
+  const productReviews = reviews.filter((review) => review.productId === productId);
+  if (productReviews.length === 0) {
+    return null;
+  }
+  const totalRating = productReviews.reduce((acc, review) => acc + review.rating, 0);
+  const averageRating = totalRating / productReviews.length;
+  return { averageRating: averageRating.toFixed(1), numReviews: productReviews.length };
 }
 </script>
 
@@ -49,6 +149,20 @@ function hideProductDetails() {
   justify-content: center;
 }
 
+.single-review {
+  background-color: var(--tertiary-);
+  border-radius: 25px;
+  padding: 10px;
+  margin: 5px 0px 5px 0px;
+}
+
+.rating {
+  font-size: 20px;
+}
+
+.yellow {
+  color: yellow;
+}
 
 .product-container {
   background-color: rgb(248, 235, 235);
@@ -162,9 +276,9 @@ h4 {
   width: 450px;
   height: 700px;
   border-radius: 25px 0px 0px 0px;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   padding: 20px;
 }
 
@@ -201,7 +315,7 @@ h1 {
 }
 
 .description-container {
-  max-height: 70px;
+  max-height: 35px;
   overflow: hidden;
   transition: max-height 0.5s ease;
 }
@@ -218,6 +332,7 @@ h1 {
   background-color: var(--primary-);
   color: white;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 5px;
 }
 
 .btn:hover {
@@ -241,10 +356,15 @@ h1 {
 
 .review-container {
   width: 410px;
-  height: 90px;
-  background-color: var(--secondary-);
+  height: 170px;
+  background-color: var(--primary-);
   border-radius: 15px;
   padding: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 
 /* Responsive Adjustments */
