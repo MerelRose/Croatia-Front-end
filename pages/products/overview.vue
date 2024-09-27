@@ -42,9 +42,9 @@
         <div class="review-container">
         <h1>Reviews</h1>
         <div v-for="review in productReviews" :key="review.id">
-          <p>{{ review.text }}</p>
           <p>Rating: {{ review.rating }}/5</p>
           <p>Username: {{ review.user_id }}</p>
+          <p>Review: {{ review.text }}</p>
         </div>
       </div>
     </div>
@@ -54,6 +54,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useFetch } from '#app';
+
+// const user = useState('user');
 
 const { data: products } = await useFetch('http://localhost:3000/products');
 
