@@ -18,9 +18,34 @@
       <p class="description-container" :class="{ expanded: showMore }">{{ selectedProduct.description }}</p>
       <button class="btn" @click="showMore = !showMore">{{ showMore ? 'Less' : 'More' }}</button>
       <!-- <span class="heart-icon">&#10084;</span> -->
-      <div class="review-container">
+      
+
+
+        <form @submit.prevent="addReview">
+            <div>
+                    <input type="radio" id="rating-1" v-model="reviewRating" value="1">
+                    <label for="rating-1"> 1 </label>
+                    <input type="radio" id="rating-2" v-model="reviewRating" value="2">
+                    <label for="rating-2"> 2 </label>
+                    <input type="radio" id="rating-3" v-model="reviewRating" value="3">
+                    <label for="rating-3"> 3 </label>
+                    <input type="radio" id="rating-4" v-model="reviewRating" value="4">
+                    <label for="rating-4"> 4 </label>
+                    <input type="radio" id="rating-5" v-model="reviewRating" value="5">
+                    <label for="rating-5"> 5 </label>
+            </div>
+            <input type="text" v-model="reviewUsername" placeholder="Your name (optional)">
+            <input type="text" v-model="reviewText" placeholder="Write your review...">
+          <button type="submit" class="btn">Add Review</button>
+        </form>
+
+        <div class="review-container">
         <h1>Reviews</h1>
-        <p>5/5 stars</p>
+        <div v-for="review in productReviews" :key="review.id">
+          <p>{{ review.text }}</p>
+          <p>Rating: {{ review.rating }}/5</p>
+          <p>Username: {{ review.user_id }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -28,18 +53,74 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useFetch } from '#app';
+
 const { data: products } = await useFetch('http://localhost:3000/products');
 const { data: reviews } = await useFetch('http://localhost:3000/reviews');
 
 const selectedProduct = ref(null);
 const showMore = ref(false);
+const productReviews = ref([]);
 
 function showProductDetails(product) {
   selectedProduct.value = product;
+  fetchReviews(product.id);
+}
+
+async function fetchReviews(productId) {
+  const response = await fetch(`http://localhost:3000/reviews/${productId}`);
+  const data = await response.json();
+  productReviews.value = data;
 }
 
 function hideProductDetails() {
   selectedProduct.value = null;
+  productReviews.value = [];
+}
+
+
+
+const reviewText = ref('');
+const reviewRating = ref('');
+const reviewUsername = ref('');
+
+async function addReview() {
+  const review = {
+    user_id: null,
+    text: reviewText.value,
+    rating: reviewRating.value,
+    product_id: selectedProduct.value.id,
+  };
+
+
+
+  const response = await $fetch('http://localhost:3000/reviews', {
+    method: 'POST',
+    body: JSON.stringify(review),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (response.ok) {
+    console.log('Review added successfully!');
+    reviewText.value = '';
+    reviewRating.value = '';
+    reviewUsername.value = '';
+    fetchReviews(selectedProduct.value.id);
+  } else {
+    console.error('Error adding review:', response.statusText);
+  }
+}
+
+function calculateAverageRating(reviews, productId) {
+  const productReviews = reviews.filter((review) => review.productId === productId);
+  if (productReviews.length === 0) {
+    return null;
+  }
+  const totalRating = productReviews.reduce((acc, review) => acc + review.rating, 0);
+  const averageRating = totalRating / productReviews.length;
+  return { averageRating: averageRating.toFixed(1), numReviews: productReviews.length };
 }
 </script>
 
