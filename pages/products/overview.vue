@@ -13,13 +13,13 @@
     <div v-if="selectedProduct" class="overview-container">
       <button class="btn" @click="hideProductDetails">Close</button>
       <img :src="selectedProduct.image" alt="product image" class="overview-image">
-      <h2>{{ selectedProduct.title }}</h2>
+      <h3>{{ selectedProduct.title }}</h3>
       <p>&euro;{{ selectedProduct.price }}</p>
       <p class="description-container" :class="{ expanded: showMore }">{{ selectedProduct.description }}</p>
       <button class="btn" @click="showMore = !showMore">{{ showMore ? 'Less' : 'More' }}</button>
-      <button class="btn">Add Product</button>
+      <!-- <button class="btn">Add Product</button> -->
       <!-- <span class="heart-icon">&#10084;</span> -->
-      
+        
         <!-- <form @submit.prevent="addReview">
             <div>
                     <input type="radio" id="rating-1" v-model="reviewRating" value="1">
