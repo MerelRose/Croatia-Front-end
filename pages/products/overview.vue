@@ -21,7 +21,7 @@
       
 
 
-        <form @submit.prevent="addReview">
+        <!-- <form @submit.prevent="addReview">
             <div>
                     <input type="radio" id="rating-1" v-model="reviewRating" value="1">
                     <label for="rating-1"> 1 </label>
@@ -37,14 +37,14 @@
             <input type="text" v-model="reviewUsername" placeholder="Your name (optional)">
             <input type="text" v-model="reviewText" placeholder="Write your review...">
           <button type="submit" class="btn">Add Review</button>
-        </form>
-
-        <div class="review-container">
+        </form> -->
         <h1>Reviews</h1>
-        <div v-for="review in productReviews" :key="review.id">
-          <p>Rating: {{ review.rating }}/5</p>
-          <p>Username: {{ review.user_id }}</p>
-          <p>Review: {{ review.text }}</p>
+        <div class="review-container">
+        <div v-for="review in productReviews" :key="review.id" class="single-review">
+          <!-- <h4>Rating: {{ review.rating }}/5</h4> -->
+          <div class="rating"> <span v-for="i in 5" :class="{ 'yellow': i <= review.rating }">&#9733;</span></div>
+          <!-- <p>Username: {{ review.user_id }}</p> -->
+          <p>{{ review.text }}</p>
         </div>
       </div>
     </div>
@@ -147,6 +147,13 @@ function calculateAverageRating(reviews, productId) {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.single-review {
+  background-color: var(--tertiary-);
+  border-radius: 25px;
+  padding: 10px;
+  margin: 5px 0px 5px 0px;
 }
 
 .rating {
@@ -349,8 +356,8 @@ h1 {
 
 .review-container {
   width: 410px;
-  height: 90px;
-  background-color: var(--secondary-);
+  height: 170px;
+  background-color: var(--primary-);
   border-radius: 15px;
   padding: 10px;
   max-height: 200px;
